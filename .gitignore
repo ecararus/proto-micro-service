@@ -1,0 +1,9 @@
+build
+build/*
+
+# Idea
+*.iml
+.idea
+
+# Atlassian
+atlassian-ide-plugin.xml
