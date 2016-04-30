@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: proto-microservice
+        description: Microservice with protobuf encoded response.
+
+spring:
+    profiles: default, dev
+    datasource:
+        url: ${DEVDBURL}
+        username: ${DEVDBUSERNAME}
+        password: ${DEVDBPASSWORD}
+server:
+    port: ${port:8010}
+    compression:
+            enabled: true
+            min-response-size: 1
