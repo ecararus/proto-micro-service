@@ -36,6 +36,7 @@ dependencies {
     testCompile ("junit:junit")
 }
 
+
 uploadArchives {
     repositories {
        flatDir {
@@ -43,7 +44,6 @@ uploadArchives {
        }
     }
 }
-
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
