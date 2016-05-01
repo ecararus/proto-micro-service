@@ -8,6 +8,7 @@ version = '1.0'
 
 buildscript {
     repositories {
+        maven { url "http://repo.spring.io/libs-milestone" }
         mavenCentral()
     }
     dependencies {
@@ -18,32 +19,41 @@ buildscript {
 jar {
     manifest {
         attributes 'Implementation-Title': 'Microservice with protobuf encoded api.',
-                   'Implementation-Version': version
+                'Implementation-Version': version
     }
 }
 
 repositories {
+    jcenter()
     mavenCentral()
+    mavenLocal()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
-    compile("org.springframework.boot:spring-boot-starter-jetty",
-            "org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("com.google.guava:guava:19.0")
+    compile("org.springframework:spring-beans")
 
-    testCompile ("junit:junit")
+    testCompile("junit:junit")
+    testCompile("org.springframework:spring-test:4.2.5.RELEASE")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.mutabilitydetector:MutabilityDetector:0.9.5")
+    testCompile("com.jayway.jsonpath:json-path")
+    testCompile("org.springframework:spring-test")
 }
 
-
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
-    }
-}
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+bootRun {
+    addResources = true
 }
